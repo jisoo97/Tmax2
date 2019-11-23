@@ -5,7 +5,6 @@
 #note_div{
 	border : solid 2px red;
 	height: 69%;
-
 }
 #key_div{
 	border : solid 2px red;
@@ -25,3 +24,13 @@
 	float:left;
 	margin-left: 400px;
 }
+
+.note{
+	height : 50px;
+	width : 125px;
+	background-color: blue;
+	margin-top: 274px;
+}
+
+
+
