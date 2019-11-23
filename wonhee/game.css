@@ -6,6 +6,7 @@
 	border : solid 2px red;
 	height: 69%;
 	float : center;
+	top : 1px;
 }
 #key_div{
 	border : solid 2px red;
@@ -28,4 +29,5 @@
 	height : 50px;
 	background-color: blue;
 	float : left;
+	top : 400px;
 }

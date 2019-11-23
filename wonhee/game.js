@@ -26,16 +26,39 @@ function computeCustomizedWidth(numOfKey){
 	return (largeWidth - (2*border))/numOfKey -(2*margin);
 }
 
+//주기적으로 불리는 함수
+var intervalID = window.setInterval(gameManager, 4000);
 
-//매 초마다 불리는 함수
 function gameManager(){
+	moveNote();
 	/*
 	moveNote() - note위치 수정
 	deleteNote() - 화면에서 벗어난 note 삭제
 	drawNote() - note 그리기
  	updateScore() - 점수 올리기
-	updateLife() - 목숨 확인 -> 게임 종료할지 말지
+	updateLife() - 목숨 확인 -> 게임 종료할지 말지 결정
 
 	부가적으로 다른 여러 함수가 필요함
 	*/
+}
+
+
+function moveNote(){
+	/*var notes = document.querySelectorAll('.note');
+	for (var i=0; i<notes.length; i++){
+		var currentPosition = parseInt(notes[i].style.top);
+		console.log(currentPosition);
+		console.log(notes[i].style.top);
+		var amountToMove = 100;
+		notes[i].style.top = currentPosition+amountToMove+"pt";
+		console.log("mmmm")
+	}*/
+	//var note_div = document.querySelector('#note_div');
+	//console.log(getPosition(note_div));
+	var note_div = document.getElementById('note_div');
+	var currentPosition = parseInt(note_div.style.top);
+	console.log(currentPosition);
+	console.log(note_div.style);
+	var amountToMove = 30;
+	note_div.style.top = currentPosition+amountToMove+"px";
 }
