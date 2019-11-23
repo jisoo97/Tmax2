@@ -25,3 +25,17 @@ function computeCustomizedWidth(numOfKey){
 	var border = window.getComputedStyle(note_div).borderWidth[0];
 	return (largeWidth - (2*border))/numOfKey -(2*margin);
 }
+
+
+//매 초마다 불리는 함수
+function gameManager(){
+	/*
+	moveNote() - note위치 수정
+	deleteNote() - 화면에서 벗어난 note 삭제
+	drawNote() - note 그리기
+ 	updateScore() - 점수 올리기
+	updateLife() - 목숨 확인 -> 게임 종료할지 말지
+
+	부가적으로 다른 여러 함수가 필요함
+	*/
+}
