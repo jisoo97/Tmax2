@@ -1,0 +1,24 @@
+#score_div{
+	border : solid 2px red;
+	height: 10%;
+}
+#note_div{
+	border : solid 2px red;
+	height: 69%;
+
+}
+#key_div{
+	border : solid 2px red;
+	height: 20%;
+}
+#life_div{
+	border : solid 2px red;
+	float : right;
+	height: 250px;
+}
+#all_div{
+	height: 500px;
+	width:300px;
+	
+	float : left;
+}
