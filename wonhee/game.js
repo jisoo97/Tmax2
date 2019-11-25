@@ -2,7 +2,7 @@ const NOTE_MARGIN = 2;
 
 //numOfKey는 난이도에 따른 키의 갯수
 //return없음
-function drawNote(numOfKey){
+function makeNote(numOfKey){
 	var note_div = document.getElementById("note_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
 	for(var i=1; i<=numOfKey; i++)
@@ -32,7 +32,7 @@ var intervalID = window.setInterval(gameManager, 4000);
 function gameManager(){
 	moveNote();
 	/*
-	moveNote() - note위치 수정
+	moveNote() - note위치 수정 ** 한번만 불려도 될듯
 	deleteNote() - 화면에서 벗어난 note 삭제
 	drawNote() - note 그리기
  	updateScore() - 점수 올리기
@@ -42,23 +42,22 @@ function gameManager(){
 	*/
 }
 
-
+//parameter - nope
+//return - nope
+//site_url - https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
 function moveNote(){
-	/*var notes = document.querySelectorAll('.note');
-	for (var i=0; i<notes.length; i++){
-		var currentPosition = parseInt(notes[i].style.top);
-		console.log(currentPosition);
-		console.log(notes[i].style.top);
-		var amountToMove = 100;
-		notes[i].style.top = currentPosition+amountToMove+"pt";
-		console.log("mmmm")
-	}*/
-	//var note_div = document.querySelector('#note_div');
-	//console.log(getPosition(note_div));
-	var note_div = document.getElementById('note_div');
-	var currentPosition = parseInt(note_div.style.top);
-	console.log(currentPosition);
-	console.log(note_div.style);
-	var amountToMove = 30;
-	note_div.style.top = currentPosition+amountToMove+"px";
+	  //** line 단위와 전체 단위 구분 필요
+		var notes = document.querySelectorAll('.note');
+		for(var i=0; i<notes.length; i++){
+			notes[i].animate(
+				[
+					// keyframes
+					{ transform: 'translateY(0px)' },
+					{ transform: 'translateY(300px)' }
+				], {
+					// timing options
+					duration: 1000,
+					iterations: 1
+				});
+		}
 }
