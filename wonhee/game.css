@@ -12,6 +12,7 @@
 	border : solid 2px red;
 	height: 20%;
 }
+
 #life_div{
 	border : solid 2px red;
 	float : right;
@@ -30,4 +31,16 @@
 	background-color: blue;
 	float : left;
 	top : 400px;
+}
+
+#btn{
+	border : none;
+	margin : 20px;
+	width : 60px;
+	padding-top : 30px;
+}
+
+#btn:hover{
+	background-image : linear-gradient(to top, #d35400, #e67e22,#f1c40f);
+	-webkit-transform : scale(1.0,15.0);
 }

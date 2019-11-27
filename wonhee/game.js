@@ -61,3 +61,5 @@ function moveNote(){
 				});
 		}
 }
+
+//https://flatuicolors.com/palette/defo - pallete
