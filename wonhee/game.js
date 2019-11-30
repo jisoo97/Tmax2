@@ -35,7 +35,7 @@ function gameManager(){
 	/*
 	moveNote() - note위치 수정 ** 한번만 불려도 될듯
 	deleteNote() - 화면에서 벗어난 note 삭제
-	drawNote() - note 그리기
+	makeNote() - note 그리기
  	updateScore() - 점수 올리기
 	updateLife() - 목숨 확인 -> 게임 종료할지 말지 결정
 
@@ -88,7 +88,10 @@ function makeKeyPad(numOfKey){
 			key.innerHTML = key8[i];
 
 	}
+}
 
+function printKey(keyCode){
+	console.log(keyCode);
 }
 
 
