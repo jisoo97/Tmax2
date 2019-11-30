@@ -4,12 +4,18 @@
 	<title>document</title>
 	<link rel="stylesheet" href="game.css">
 	<script src="game.js"></script>
+	<script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		window.onload = function(){
 			var numOfKey = prompt();
 			makeNote(numOfKey);
 			makeKeyPad(numOfKey);
 		}
+
+		$(document).keydown(function(event) {
+			printKey(event.keyCode);
+		});
+
 	</script>
 </head>
 <body>
@@ -20,7 +26,7 @@
 			<div id ="note_div">
 			</div>
 			<div id ="key_div">
-				
+
 			</div>
 		</div>
 

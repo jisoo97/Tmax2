@@ -12,7 +12,7 @@ function makeNote(numOfKey){
 		note.style.width = customizedWidth + "px";
 		note.style.margin = NOTE_MARGIN + "px";
 		note_div.appendChild(note);
-		
+
 	}
 }
 
@@ -76,5 +76,8 @@ function makeKeyPad(numOfKey){
 		key.style.margin = NOTE_MARGIN + "px";
 		key_div.appendChild(key);
 	}
+}
 
+function printKey(keyCode){
+	console.log(keyCode);
 }
