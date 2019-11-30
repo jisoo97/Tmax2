@@ -6,7 +6,9 @@
 	<script src="game.js"></script>
 	<script type="text/javascript">
 		window.onload = function(){
-			makeNote(prompt());
+			var numOfKey = prompt();
+			makeNote(numOfKey);
+			makeKeyPad(numOfKey);
 		}
 	</script>
 </head>
@@ -18,7 +20,7 @@
 			<div id ="note_div">
 			</div>
 			<div id ="key_div">
-				key_div
+				
 			</div>
 		</div>
 

@@ -44,3 +44,10 @@
 	background-image : linear-gradient(to top, #d35400, #e67e22,#f1c40f);
 	-webkit-transform : scale(1.0,15.0);
 }
+
+.key{
+	height : 50px;
+	background-color: pink;
+	float : left;
+	top : 400px;
+}
