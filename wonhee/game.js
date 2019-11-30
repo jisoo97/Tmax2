@@ -3,6 +3,7 @@ const NOTE_MARGIN = 2;
 //numOfKey는 난이도에 따른 키의 갯수
 //return없음
 function makeNote(numOfKey){
+	console.log("makenote");
 	var note_div = document.getElementById("note_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
 	for(var i=1; i<=numOfKey; i++)
@@ -31,7 +32,7 @@ function computeCustomizedWidth(numOfKey){
 var intervalID = window.setInterval(gameManager, 4000);
 
 function gameManager(){
-	moveNote();
+	makeKeyPad();
 	/*
 	moveNote() - note위치 수정 ** 한번만 불려도 될듯
 	deleteNote() - 화면에서 벗어난 note 삭제
@@ -46,7 +47,7 @@ function gameManager(){
 //parameter - nope
 //return - nope
 //site_url - https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-function moveNote(){
+function makeKeyPad(){
 	  //** line 단위와 전체 단위 구분 필요
 		var notes = document.querySelectorAll('.note');
 		for(var i=0; i<notes.length; i++){
@@ -69,7 +70,6 @@ var key4 = ['D','F','J','K'];
 var key6 = ['S','D','F','J','K','L'];
 var key8 = ['A','S','D','F','J','K','L',';'];
 
-
 function makeKeyPad(numOfKey){
 	var key_div = document.getElementById("key_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
@@ -77,21 +77,72 @@ function makeKeyPad(numOfKey){
 	{
 		var key= document.createElement('div');
 		key.classList.add("key");
-		key.style.width = customizedWidth + "px";
+		key.style.width =customizedWidth +"px";
 		key.style.margin = NOTE_MARGIN + "px";
 		key_div.appendChild(key);
-		if(numOfKey == 4)
+	
+		if(numOfKey == 4){
 			key.innerHTML = key4[i];
-		else if(numOfKey == 6)
+			key.id = key4[i];
+		}
+		else if(numOfKey == 6){
 			key.innerHTML = key6[i];
-		else if(numOfKey == 8)
+			key.id = key6[i];
+		}
+		else if(numOfKey == 8){
 			key.innerHTML = key8[i];
-
+			key.id = key8[i];
+		}
 	}
 }
 
-function printKey(keyCode){
-	console.log(keyCode);
+
+function getPressedKey(keyCode){
+	var letter;
+	console.log("keyCode", keyCode);
+	switch(keyCode){
+		case 65:
+			letter = 'A';
+			break;
+		case 83:
+			letter = 'S';
+			break;
+		case 68:
+			letter = 'D';
+			break;
+		case 70:
+			letter = 'F';
+			break;
+		case 74:
+			letter = 'J';
+			break;
+		case 75:
+			letter = 'K';
+			break;
+		case 76:
+			letter = 'L';
+			break;
+		case 59:
+			letter = ';';
+			break;
+		default :
+			letter = false;
+	}
+	return letter;
+	//A=75; S=93; D=78; F=80; J=84; K=85; L=86; ;=69;
+}
+
+function changeKeyColor(keyCode){
+	var pressedKey = getPressedKey(keyCode);
+	var key_div = document.getElementById(pressedKey);
+	key_div.style.backgroundColor = "red";
+}
+
+function changeKeyColorBack(keyCode){
+	console.log("key up");
+	var pressedKey = getPressedKey(keyCode);
+	var key_div = document.getElementById(pressedKey);
+	key_div.style.backgroundColor = "pink";
 }
 
 

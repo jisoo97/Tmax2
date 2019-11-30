@@ -13,7 +13,11 @@
 		}
 
 		$(document).keydown(function(event) {
-			printKey(event.keyCode);
+			changeKeyColor(event.keyCode);
+		});
+
+		$(document).keyup(function(event) {
+			changeKeyColorBack(event.keyCode);
 		});
 
 	</script>
