@@ -5,20 +5,52 @@
 #note_div{
 	border : solid 2px red;
 	height: 69%;
-
+	float : center;
+	top : 1px;
 }
 #key_div{
 	border : solid 2px red;
 	height: 20%;
 }
+
 #life_div{
 	border : solid 2px red;
 	float : right;
 	height: 250px;
+	margin:100px;
 }
 #all_div{
 	height: 500px;
-	width:300px;
-	
+	width:500px;
+	float:left;
+	margin-left: 400px;
+}
+
+.note{
+	height : 50px;
+	background-color: blue;
 	float : left;
+	top : 400px;
+}
+
+#btn{
+	border : none;
+	margin : 20px;
+	width : 60px;
+	padding-top : 30px;
+}
+
+#btn:hover{
+	background-image : linear-gradient(to top, #d35400, #e67e22,#f1c40f);
+	-webkit-transform : scale(1.0,15.0);
+}
+
+.key{
+	height : 50px;
+	background-color: pink;
+	float : left;
+	top : 400px;
+	text-align: center;
+	line-height: 50px;
+	font-size :20px;
 }

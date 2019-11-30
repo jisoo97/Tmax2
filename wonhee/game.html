@@ -3,23 +3,43 @@
 <head>
 	<title>document</title>
 	<link rel="stylesheet" href="game.css">
+	<script src="game.js"></script>
+	<script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var numOfKey = prompt();
+			makeNote(numOfKey);
+			makeKeyPad(numOfKey);
+		}
+
+		$(document).keydown(function(event) {
+			printKey(event.keyCode);
+		});
+
+	</script>
 </head>
 <body>
 		<div id="all_div">
-			<div id ="score_div"> 
-				score div		
+			<div id ="score_div">
+				score div
 			</div>
+<<<<<<< HEAD
 			<div id ="note_div"> 
 				note div
 						
+=======
+			<div id ="note_div">
+>>>>>>> f098f395c58332c0023f361f27f72dd956d639a9
 			</div>
 			<div id ="key_div">
-				key div		
+
 			</div>
 		</div>
+
 		<div id="life_div">
 			life score
 		</div>
-	
+		<button id='btn'>button</button>
+
 </body>
 </html>
