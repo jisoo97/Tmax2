@@ -2,17 +2,25 @@ const NOTE_MARGIN = 2;
 
 //numOfKey는 난이도에 따른 키의 갯수
 //return없음
+<<<<<<< HEAD
 function makeNote(numOfKey){
 	console.log("makenote");
+=======
+function makeNote(numOfKey,noteLine){
+>>>>>>> e803dca1b1e5826b53b4b60229d65ee52282e8ac
 	var note_div = document.getElementById("note_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
-	for(var i=1; i<=numOfKey; i++)
+	for(var i=0; i<numOfKey; i++)
 	{
 		var note= document.createElement('div');
-		note.classList.add("note");
 		note.style.width = customizedWidth + "px";
 		note.style.margin = NOTE_MARGIN + "px";
 		note_div.appendChild(note);
+		if(noteLine[i])
+			note.classList.add("note");
+		
+		else
+			note.classList.add("note_none");
 
 	}
 }
@@ -29,10 +37,16 @@ function computeCustomizedWidth(numOfKey){
 }
 
 //주기적으로 불리는 함수
-var intervalID = window.setInterval(gameManager, 4000);
+var intervalID = window.setInterval(gameManager, 300);
 
+var flag = true;
 function gameManager(){
 	makeKeyPad();
+	if(flag){
+		moveNote();
+		flag = false;
+	}
+	deleteNote();
 	/*
 	moveNote() - note위치 수정 ** 한번만 불려도 될듯
 	deleteNote() - 화면에서 벗어난 note 삭제
@@ -145,4 +159,9 @@ function changeKeyColorBack(keyCode){
 	key_div.style.backgroundColor = "pink";
 }
 
+function deleteNote(){
+	var notes = document.querySelectorAll('.note');
+	var p = $(notes[0]).offset();
+	console.log(p);
+}
 
