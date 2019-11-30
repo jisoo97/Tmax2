@@ -33,6 +33,13 @@
 	top : 400px;
 }
 
+.note_none{
+	height : 50px;
+	background-color: white;
+	float : left;
+	top : 400px;
+}
+
 #btn{
 	border : none;
 	margin : 20px;

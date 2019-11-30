@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function drawNote(numOfKey) {
-	
-}
-=======
 const NOTE_MARGIN = 2;
 
 //numOfKey는 난이도에 따른 키의 갯수
@@ -13,10 +8,14 @@ function makeNote(numOfKey){
 	for(var i=1; i<=numOfKey; i++)
 	{
 		var note= document.createElement('div');
-		note.classList.add("note");
 		note.style.width = customizedWidth + "px";
 		note.style.margin = NOTE_MARGIN + "px";
 		note_div.appendChild(note);
+		if(noteLine[i])
+			note.classList.add("note");
+		
+		else
+			note.classList.add("note_none");
 
 	}
 }
@@ -99,5 +98,8 @@ function printKey(keyCode){
 	console.log(keyCode);
 }
 
+function deleteNote(){
+	var notes = document.querySelectorAll('.note');
+	console.log(notes[0].style.position);
+}
 
->>>>>>> f098f395c58332c0023f361f27f72dd956d639a9
