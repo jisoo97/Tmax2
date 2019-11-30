@@ -12,6 +12,7 @@ function makeNote(numOfKey){
 		note.style.width = customizedWidth + "px";
 		note.style.margin = NOTE_MARGIN + "px";
 		note_div.appendChild(note);
+		
 	}
 }
 
@@ -63,3 +64,17 @@ function moveNote(){
 }
 
 //https://flatuicolors.com/palette/defo - pallete
+
+function makeKeyPad(numOfKey){
+	var key_div = document.getElementById("key_div");
+	var customizedWidth = computeCustomizedWidth(numOfKey);
+	for(var i=1; i<=numOfKey; i++)
+	{
+		var key= document.createElement('div');
+		key.classList.add("key");
+		key.style.width = customizedWidth + "px";
+		key.style.margin = NOTE_MARGIN + "px";
+		key_div.appendChild(key);
+	}
+
+}
