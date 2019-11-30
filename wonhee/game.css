@@ -13,12 +13,8 @@
 	height: 20%;
 }
 
-#life_div{
-	border : solid 2px red;
-	float : right;
-	height: 250px;
-	margin:100px;
-}
+
+
 #all_div{
 	height: 500px;
 	width:500px;
@@ -60,4 +56,5 @@
 	text-align: center;
 	line-height: 50px;
 	font-size :20px;
+	
 }
