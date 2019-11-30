@@ -32,10 +32,15 @@ function computeCustomizedWidth(numOfKey){
 }
 
 //주기적으로 불리는 함수
-var intervalID = window.setInterval(gameManager, 4000);
+var intervalID = window.setInterval(gameManager, 300);
 
+var flag = true;
 function gameManager(){
-	moveNote();
+	if(flag){
+		moveNote();
+		flag = false;
+	}
+	deleteNote();
 	/*
 	moveNote() - note위치 수정 ** 한번만 불려도 될듯
 	deleteNote() - 화면에서 벗어난 note 삭제
@@ -100,6 +105,7 @@ function printKey(keyCode){
 
 function deleteNote(){
 	var notes = document.querySelectorAll('.note');
-	console.log(notes[0].style.position);
+	var p = $(notes[0]).offset();
+	console.log(p);
 }
 
