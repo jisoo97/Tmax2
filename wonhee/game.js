@@ -2,10 +2,10 @@ const NOTE_MARGIN = 2;
 
 //numOfKey는 난이도에 따른 키의 갯수
 //return없음
-function makeNote(numOfKey){
+function makeNote(numOfKey,noteLine){
 	var note_div = document.getElementById("note_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
-	for(var i=1; i<=numOfKey; i++)
+	for(var i=0; i<numOfKey; i++)
 	{
 		var note= document.createElement('div');
 		note.style.width = customizedWidth + "px";
