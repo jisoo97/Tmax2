@@ -2,12 +2,9 @@ const NOTE_MARGIN = 2;
 
 //numOfKey는 난이도에 따른 키의 갯수
 //return없음
-<<<<<<< HEAD
-function makeNote(numOfKey){
-	console.log("makenote");
-=======
+
+
 function makeNote(numOfKey,noteLine){
->>>>>>> e803dca1b1e5826b53b4b60229d65ee52282e8ac
 	var note_div = document.getElementById("note_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
 	for(var i=0; i<numOfKey; i++)
@@ -61,7 +58,7 @@ function gameManager(){
 //parameter - nope
 //return - nope
 //site_url - https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-function makeKeyPad(){
+function moveNote(){
 	  //** line 단위와 전체 단위 구분 필요
 		var notes = document.querySelectorAll('.note');
 		for(var i=0; i<notes.length; i++){
