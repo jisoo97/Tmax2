@@ -12,7 +12,7 @@ function makeNote(numOfKey){
 		note.style.width = customizedWidth + "px";
 		note.style.margin = NOTE_MARGIN + "px";
 		note_div.appendChild(note);
-		
+
 	}
 }
 
@@ -65,16 +65,30 @@ function moveNote(){
 
 //https://flatuicolors.com/palette/defo - pallete
 
+var key4 = ['D','F','J','K'];
+var key6 = ['S','D','F','J','K','L'];
+var key8 = ['A','S','D','F','J','K','L',';'];
+
+
 function makeKeyPad(numOfKey){
 	var key_div = document.getElementById("key_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
-	for(var i=1; i<=numOfKey; i++)
+	for(var i=0; i<numOfKey; i++)
 	{
 		var key= document.createElement('div');
 		key.classList.add("key");
 		key.style.width = customizedWidth + "px";
 		key.style.margin = NOTE_MARGIN + "px";
 		key_div.appendChild(key);
+		if(numOfKey == 4)
+			key.innerHTML = key4[i];
+		else if(numOfKey == 6)
+			key.innerHTML = key6[i];
+		else if(numOfKey == 8)
+			key.innerHTML = key8[i];
+
 	}
 
 }
+
+
