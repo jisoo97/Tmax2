@@ -31,7 +31,7 @@
 
 .note_none{
 	height : 50px;
-	background-color: white;
+	background-color: black;
 	float : left;
 	top : 400px;
 }
@@ -56,5 +56,5 @@
 	text-align: center;
 	line-height: 50px;
 	font-size :20px;
-	
+
 }
