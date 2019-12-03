@@ -37,36 +37,39 @@ const NUM_OF_KEY = 4;
 [23.25,1,1,0,1],
 [23.75,0,1,0,0]];
 */
-var pattern = [[0.5,1,0,0,0],[1.0,0,1,0,0],[1.5,0,0,1,0],[3,0,0,0,1],[5,1,1,1,1]];
+var pattern = [[0.5,1,1,1,1],[2.5,1,1,1,1],[5.5,1,1,1,1],[8.5,1,1,1,1],[10.5,1,1,1,1]];
 var firstNote = [];
+var score = 0;
+
 //주기적으로 불리는 함수
 var intervalID = window.setInterval(gameManager, 250);
-
 var time = 0;
 var i=0;
 function gameManager(){
 	if(pattern[i][0] == time){
 		makeNote(NUM_OF_KEY,pattern[i]);
 		moveNote(firstNote);
-		sleep(1000);
+		sleep(1300);
 		i++;
 	}
 	time = time+0.25;
-
-  /*
- 	updateScore() - 점수 올리기
-	*/
 }
 
+//delay for deleteNote
 function sleep (delay) {
 	setTimeout(function() {
-		deleteNote();
+			deleteNote(null);
 	}, delay);
 }
 
+//update score
+function updateScore(){
+	console.log("update score");
+	var score_div = document.getElementById("score_div");
+	score_div.innerHTML = score;
+}
+
 //===========================    Note 관련 ================================
-
-
 //numOfKey는 난이도에 따른 키의 갯수
 //return없음
 function makeNote(numOfKey,noteLine){
@@ -86,8 +89,38 @@ function makeNote(numOfKey,noteLine){
 	}
 }
 
-//numOfKey - Key의 갯수
-//return - note 1개의 넓이
+//noteLine : note 한 줄의 배열
+//return : nope
+function moveNote(noteLine){
+	  //console.log("move note");
+		for(var i=0; i<noteLine.length; i++){
+			noteLine[i].animate(
+				[
+					// keyframes
+					{ transform: 'translateY(0px)' },
+					{ transform: 'translateY(340px)' }
+				], {
+					// timing options
+					duration: 1000,
+					iterations: 1
+				});
+		}
+}
+
+//index : index of certain note in firstNote
+function deleteNote(index){
+	//delete the first headed notes
+	if(!index){//index == null
+		for(var i=0; i<NUM_OF_KEY; i++)
+			firstNote.shift().remove();
+	}
+	else {//make certain notes invisible
+		firstNote[index].style.backgroundColor = "transparent";
+	}
+}
+
+//numOfKey : Key의 갯수
+//return : note 1개의 넓이
 function computeCustomizedWidth(numOfKey){
 	var note_div = document.querySelector('#note_div');
 	var largeWidth = note_div.offsetWidth;
@@ -97,34 +130,19 @@ function computeCustomizedWidth(numOfKey){
 	return (largeWidth - (2*border))/numOfKey -(2*margin) -1;
 }
 
-//noteLine : note 한 줄의 배열
-//return - nope
-//site_url - https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-function moveNote(noteLine){
-	  console.log("move note");
-		for(var i=0; i<noteLine.length; i++){
-			noteLine[i].animate(
-				[
-					// keyframes
-					{ transform: 'translateY(0px)' },
-					{ transform: 'translateY(300px)' }
-				], {
-					// timing options
-					duration: 1000,
-					iterations: 1
-				});
-		}
+//noteItem : element of one note
+//return : score (score by poisition)
+function getScoreByPosition(noteItem){
+	var topPosition = $(noteItem).offset().top;
+	var score = "";
+	if (topPosition<359 || topPosition>411) // 359> topPos  or 411 <topPos
+		score = 'bad';
+	else if(topPosition<390 && topPosition>380) // 380 < topPos < 390
+		score = 'perfect';
+	else//normal
+		score = 'normal'
+	return score;
 }
-
-function deleteNote(){
-	console.log("deleteNote");
-	//var position = $(firstNote[0]).offset();
-	//delete the first headed notes
-	for(var i=0; i<NUM_OF_KEY; i++){
-		firstNote.shift().remove();
-	}
-}
-
 
 //===========================   Key 관련 =================================
 var key4 = ['D','F','J','K'];
@@ -154,7 +172,6 @@ function makeKeyPad(numOfKey){
 //letter : 눌린 문자
 function getPressedKey(keyCode){
 	var letter;
-	console.log("keyCode", keyCode);
 	switch(keyCode){
 		case 65:
 			letter = 'A';
@@ -196,8 +213,23 @@ function changeKeyColor(keyCode){
 
 //change key color back into pink
 function changeKeyColorBack(keyCode){
-	console.log("key up");
 	var pressedKey = getPressedKey(keyCode);
 	var key_div = document.getElementById(pressedKey);
 	key_div.style.backgroundColor = "pink";
+}
+
+//Check note position and pressed key
+function checkKeyWithNote(numOfKey,keyCode){
+	var pressedKey = getPressedKey(keyCode);
+	var keyArr = eval("key" + numOfKey);
+	var index = keyArr.indexOf(pressedKey);
+	var _score  = getScoreByPosition(firstNote[index]);
+	if(_score == 'bad')
+		return;
+	else if(_score == 'normal')//normal
+		score+=50;
+	else if(_score == 'perfect')//perfect
+		score+=100;
+	deleteNote(index); //normal or pefect deletes note
+	updateScore();
 }
