@@ -126,7 +126,8 @@
          'mc mong','akmu','bbibbi','bol4','taeyeon','seventeen','zico','wanna one'];
     var i=0;
     var lineNum = 35;
-    for(i=0; i<songLists.length; i++){
+    for(i=10; i<songLists.length; i++){
+      console.log("i : " + i + " ,song: " + songLists[i]);
       var pattern = writeMap(lineNum);
       var pattern_sec = secondsGenerator(pattern,lineNum);
       saveToFile_Chrome(songLists[i], beautifyContent(pattern_sec));
