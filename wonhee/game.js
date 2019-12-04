@@ -37,7 +37,7 @@ const NUM_OF_KEY = 4;
 [23.25,1,1,0,1],
 [23.75,0,1,0,0]];
 */
-var pattern = [[0.5,1,1,1,1],[2.5,1,1,1,1],[5.5,1,1,1,1],[8.5,1,1,1,1],[10.5,1,1,1,1]];
+var pattern = [[0.5,1,0,0,0],[2,0,1,0,1],[5.5,1,1,1,1],[8.5,1,1,1,1],[10.5,1,1,1,1]];
 var firstNote = [];
 var score = 0;
 
@@ -49,7 +49,7 @@ function gameManager(){
 	if(pattern[i][0] == time){
 		makeNote(NUM_OF_KEY,pattern[i]);
 		moveNote(firstNote);
-		sleep(1300);
+		sleep(1100);
 		i++;
 	}
 	time = time+0.25;
@@ -63,7 +63,9 @@ function sleep (delay) {
 }
 
 //update score
-function updateScore(){
+function updateScore(index){
+	if (firstNote[index].className != "note")
+		return;
 	console.log("update score");
 	var score_div = document.getElementById("score_div");
 	score_div.innerHTML = score;
@@ -115,7 +117,7 @@ function deleteNote(index){
 			firstNote.shift().remove();
 	}
 	else {//make certain notes invisible
-		firstNote[index].style.backgroundColor = "transparent";
+			firstNote[index].style.backgroundColor = "transparent";
 	}
 }
 
@@ -231,5 +233,5 @@ function checkKeyWithNote(numOfKey,keyCode){
 	else if(_score == 'perfect')//perfect
 		score+=100;
 	deleteNote(index); //normal or pefect deletes note
-	updateScore();
+	updateScore(index);
 }
