@@ -1,5 +1,4 @@
 const NOTE_MARGIN = 2;
-const NUM_OF_KEY = 4;
 
 var pattern = [[2.5,1,1,1,0],
 [5,1,1,0,0],
@@ -41,10 +40,12 @@ var score = 0;
 var time = 0;
 var i=0;
 var intervalID;
+var numOfKey;
 //===========================    Game 관련 ================================
-function startGame(numOfKey){
+function startGame(_numOfKey){
+		numOfKey = _numOfKey;
 		intervalID = window.setInterval(gameManager, 250);
-		makeKeyPad(numOfKey);
+		makeKeyPad();
 		playMusic();
 		game_end_div.innerHTML = "떨어지는 노트에 맞춰 키보드를 누르세요!";
 }
@@ -64,7 +65,7 @@ function gameManager(){
 		endGame();
 
 	if(pattern[i][0] == time){
-		makeNote(NUM_OF_KEY,pattern[i]);
+		makeNote(pattern[i]);
 		moveNote(firstNote);
 		sleep(1100);
 		i++;
@@ -93,9 +94,9 @@ function playMusic(){
 }
 
 //===========================    Note 관련 ================================
-//numOfKey는 난이도에 따른 키의 갯수
-//return없음
-function makeNote(numOfKey,noteLine){
+//parameter : nope
+//return : nope
+function makeNote(noteLine){
 	var note_div = document.getElementById("note_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
 	for(var i=1; i<=numOfKey; i++)
@@ -134,7 +135,7 @@ function moveNote(noteLine){
 function deleteNote(index){
 	//delete the first headed notes
 	if(!index){//index == null
-		for(var i=0; i<NUM_OF_KEY; i++)
+		for(var i=0; i<numOfKey; i++)
 			firstNote.shift().remove();
 	}
 	else {//make certain notes invisible
@@ -142,9 +143,9 @@ function deleteNote(index){
 	}
 }
 
-//numOfKey : Key의 갯수
+//parameter : nope
 //return : note 1개의 넓이
-function computeCustomizedWidth(numOfKey){
+function computeCustomizedWidth(){
 	var note_div = document.querySelector('#note_div');
 	var largeWidth = note_div.offsetWidth;
 	var margin = NOTE_MARGIN;
@@ -174,9 +175,9 @@ var key4 = ['D','F','J','K'];
 var key6 = ['S','D','F','J','K','L'];
 var key8 = ['A','S','D','F','J','K','L',';'];
 
-//numOfkey : key의 갯수
+//parameter : nope
 //return : nope
-function makeKeyPad(numOfKey){
+function makeKeyPad(){
 	var key_div = document.getElementById("key_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
 	for(var i=0; i<numOfKey; i++)
@@ -244,7 +245,7 @@ function changeKeyColorBack(keyCode){
 }
 
 //Check note position and pressed key
-function checkKeyWithNote(numOfKey,keyCode){
+function checkKeyWithNote(keyCode){
 	var pressedKey = getPressedKey(keyCode);
 	var keyArr = eval("key" + numOfKey);
 	var index = keyArr.indexOf(pressedKey);
