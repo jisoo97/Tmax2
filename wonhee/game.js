@@ -6,7 +6,7 @@ var pattern = [[2.5,1,1,1,0],
 [7.25,0,0,0,1],
 [9.75,1,0,0,1],
 [12.5,0,0,1,1],
-[14.75,1,1,0,0],
+/*[14.75,1,1,0,0],
 [17.25,1,0,0,1],
 [19.75,1,0,0,1],
 [22.25,0,0,1,1],
@@ -35,21 +35,34 @@ var pattern = [[2.5,1,1,1,0],
 [76,0,0,1,0],
 [78.25,1,1,0,1],
 [80.75,1,0,0,0],
-[83.25,1,0,0,0]];
+[83.25,1,0,0,0]*/];
 var firstNote = [];
 var score = 0;
 var time = 0;
 var i=0;
-
+var intervalID;
 //===========================    Game 관련 ================================
 function startGame(numOfKey){
-		var intervalID = window.setInterval(gameManager, 250);
+		intervalID = window.setInterval(gameManager, 250);
 		makeKeyPad(numOfKey);
 		playMusic();
+		game_end_div.innerHTML = "떨어지는 노트에 맞춰 키보드를 누르세요!";
+}
+
+//end game
+function endGame(){
+	window.clearInterval(intervalID);
+	setTimeout(function() {
+			audio.pause();
+	}, 1000);
+	game_end_div.innerHTML = "GAME OVER </br> 최종점수는 : " +score+ " 점 입니다!";
 }
 
 //주기적으로 불리는 함수
 function gameManager(){
+	if(i >= pattern.length)
+		endGame();
+
 	if(pattern[i][0] == time){
 		makeNote(NUM_OF_KEY,pattern[i]);
 		moveNote(firstNote);
