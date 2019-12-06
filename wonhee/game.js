@@ -1,50 +1,54 @@
 const NOTE_MARGIN = 2;
 const NUM_OF_KEY = 4;
 
-/*var pattern = [[1,0,0,0,1],
-[2,1,1,1,1],
-[2.5,0,1,0,0],
-[2.75,1,0,0,1],
-[3.5,0,1,1,1],
-[4.25,1,0,1,0],
-[5,1,1,1,1],
-[6,1,0,0,1],
-[6.75,0,1,0,1],
+var pattern = [[2.5,1,1,1,0],
+[5,1,1,0,0],
 [7.25,0,0,0,1],
-[8,1,1,1,1],
-[8.25,1,0,1,0],
-[9.25,0,1,1,0],
-[9.75,1,1,0,0],
-[10.5,1,1,0,0],
-[11,0,1,0,0],
-[11.5,1,0,0,1],
-[12,0,1,1,1],
-[12.5,1,0,1,0],
-[13,1,1,1,1],
-[13.75,1,0,1,0],
-[14.5,1,1,1,0],
-[15.5,1,1,0,1],
-[16.5,0,1,1,0],
+[9.75,1,0,0,1],
+[12.5,0,0,1,1],
+[14.75,1,1,0,0],
 [17.25,1,0,0,1],
-[17.75,1,1,1,1],
-[18.75,1,1,1,1],
-[19.5,0,0,1,1],
-[20.5,0,1,1,0],
-[21.5,0,0,1,0],
-[22,0,0,1,0],
-[22.5,1,0,0,1],
-[23,0,1,1,0],
-[23.25,1,1,0,1],
-[23.75,0,1,0,0]];
-*/
-var pattern = [[0.5,1,0,0,0],[2,0,1,0,1],[5.5,1,1,1,1],[8.5,1,1,1,1],[10.5,1,1,1,1]];
+[19.75,1,0,0,1],
+[22.25,0,0,1,1],
+[25,1,1,0,0],
+[27,0,0,1,1],
+[29.5,1,1,1,0],
+[32.25,1,0,0,0],
+[34.25,1,0,0,0],
+[37,0,1,0,1],
+[39,0,0,1,1],
+[41.75,1,1,0,1],
+[44.25,1,1,0,0],
+[46.5,0,1,1,1],
+[48.5,1,1,1,0],
+[51,0,0,1,0],
+[53.75,0,0,1,0],
+[56,1,0,0,0],
+[58,0,0,0,1],
+[60,1,0,0,0],
+[62,0,1,1,1],
+[64.75,0,1,0,1],
+[67,0,0,0,1],
+[69.75,1,1,0,1],
+[71.75,0,0,0,1],
+[74,1,0,0,0],
+[76,0,0,1,0],
+[78.25,1,1,0,1],
+[80.75,1,0,0,0],
+[83.25,1,0,0,0]];
 var firstNote = [];
 var score = 0;
-
-//주기적으로 불리는 함수
-var intervalID = window.setInterval(gameManager, 250);
 var time = 0;
 var i=0;
+
+//===========================    Game 관련 ================================
+function startGame(numOfKey){
+		var intervalID = window.setInterval(gameManager, 250);
+		makeKeyPad(numOfKey);
+		playMusic();
+}
+
+//주기적으로 불리는 함수
 function gameManager(){
 	if(pattern[i][0] == time){
 		makeNote(NUM_OF_KEY,pattern[i]);
@@ -63,12 +67,16 @@ function sleep (delay) {
 }
 
 //update score
-function updateScore(index){
-	if (firstNote[index].className != "note")
-		return;
+function updateScore(){
 	console.log("update score");
 	var score_div = document.getElementById("score_div");
 	score_div.innerHTML = score;
+}
+
+//play music
+function playMusic(){
+	audio.muted = false;
+	audio.play();
 }
 
 //===========================    Note 관련 ================================
@@ -136,6 +144,8 @@ function computeCustomizedWidth(numOfKey){
 //return : score (score by poisition)
 function getScoreByPosition(noteItem){
 	var topPosition = $(noteItem).offset().top;
+	if (noteItem.className != "note")
+		return 'bad';
 	var score = "";
 	if (topPosition<359 || topPosition>411) // 359> topPos  or 411 <topPos
 		score = 'bad';
@@ -233,5 +243,5 @@ function checkKeyWithNote(numOfKey,keyCode){
 	else if(_score == 'perfect')//perfect
 		score+=100;
 	deleteNote(index); //normal or pefect deletes note
-	updateScore(index);
+	updateScore();
 }

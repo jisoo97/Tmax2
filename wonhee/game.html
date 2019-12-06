@@ -7,18 +7,19 @@
 	<script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		window.onload = function(){
-			makeKeyPad(4);
+			playButton.addEventListener('click', function() {
+				startGame(4);
+		  });
+
+			$(document).keydown(function(event) {
+				changeKeyColor(event.keyCode);
+				checkKeyWithNote(4,event.keyCode);
+			});
+
+			$(document).keyup(function(event) {
+				changeKeyColorBack(event.keyCode);
+			});
 		}
-
-		$(document).keydown(function(event) {
-			changeKeyColor(event.keyCode);
-			checkKeyWithNote(4,event.keyCode);
-		});
-
-		$(document).keyup(function(event) {
-			changeKeyColorBack(event.keyCode);
-		});
-
 	</script>
 </head>
 <body>
@@ -29,7 +30,6 @@
 			<div id ="note_div">
 			</div>
 			<div id ="key_div">
-
 			</div>
 		</div>
 
@@ -37,6 +37,13 @@
 
 		</div>
 		<button id='btn'>button</button>
+
+		<audio id="audio" muted autoplay>
+  		<source src="./Hope.mp3" type="audio/mp3">
+  			Your browser does not support the audio element.
+		</audio>
+
+    <button id="playButton">PLAY</button>
 
 </body>
 </html>
