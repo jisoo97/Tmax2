@@ -11,28 +11,37 @@
 			$('.imgSlide img').slidingGallery({ useCaptions: true, container: $('.imgSlide') });
 		});
 
-
+		var activeImg = undefined;
+    function getActive(){
+        var imgList=document.getElementsByClassName("imgSlide")[0].getElementsByTagName("img");
+        for(var i=0; i<imgList.length; i++){
+					if(imgList[i].style.left == "50px")
+                activeImg = imgList[i];
+        }
+        console.log(activeImg)
+        return activeImg;
+    }
 	</script>
 </head>
 <body>
 
 	<div class="wrap">
 		<div class="imgSlide">
-			<img id="p1" src="images/1.jpg" alt="노래1"/>
-			<img id="p2"src="images/2.jpg" alt="노래2"class="start"/>
-			<img id="p3" src="images/3.jpg" alt="노래3"/>
-			<img id="p4" src="images/4.jfif" alt="노래4"/>
-			<img id="p5" src="images/5.jpg" alt="노래5"/>
-			<img id="p6" src="images/6.jpg" alt="노래6"/>
-			<img id="p7" src="images/7.jpg" alt="노래7"/>
-			<img id="p8" src="images/8.jpg" alt="노래8"/>
-			<img id="p9" src="images/9.jpg" alt="노래9"/>
-			<img id="p10" src="images/10.jpg" alt="노래10"/>
-			<img id="p11" src="images/11.jfif" alt="노래11"/>
-			<img id="p12" src="images/12.jpg" alt="노래12"/>
-			<img id="p13" src="images/13.jpg" alt="노래13"/>
-			<img id="p14" src="images/14.jfif" alt="노래14"/>
-			<img id="p15" src="images/15.jfif" alt="노래15"/>
+			<img id="p1" src="images/1.jpg" alt="노래1" onclick="getActive()"/>
+			<img id="p2"src="images/2.jpg" alt="노래2"class="start" onclick="getActive()"/>
+			<img id="p3" src="images/3.jpg" alt="노래3" onclick="getActive()"/>
+			<img id="p4" src="images/4.jfif" alt="노래4" onclick="getActive()"/>
+			<img id="p5" src="images/5.jpg" alt="노래5" onclick="getActive()"/>
+			<img id="p6" src="images/6.jpg" alt="노래6" onclick="getActive()"/>
+			<img id="p7" src="images/7.jpg" alt="노래7" onclick="getActive()"/>
+			<img id="p8" src="images/8.jpg" alt="노래8" onclick="getActive()"/>
+			<img id="p9" src="images/9.jpg" alt="노래9" onclick="getActive()"/>
+			<img id="p10" src="images/10.jpg" alt="노래10" onclick="getActive()"/>
+			<img id="p11" src="images/11.jfif" alt="노래11" onclick="getActive()"/>
+			<img id="p12" src="images/12.jpg" alt="노래12" onclick="getActive()"/>
+			<img id="p13" src="images/13.jpg" alt="노래13" onclick="getActive()"/>
+			<img id="p14" src="images/14.jfif" alt="노래14" onclick="getActive()"/>
+			<img id="p15" src="images/15.jfif" alt="노래15" onclick="getActive()"/>
 		</div>
 	</div>
 
