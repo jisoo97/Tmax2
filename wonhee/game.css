@@ -5,8 +5,8 @@
 #note_div{
 	border : solid 2px red;
 	height: 69%;
-	float : center;
 	top : 1px;
+	float : center;
 }
 #key_div{
 	border : solid 2px red;
@@ -16,30 +16,28 @@
 #all_div{
 	height: 500px;
 	width:500px;
-	float:left;
-	margin-left: 400px;
 }
 
 #game_end_div{
 	height: 200px;
 	width:200px;
-	float:left;
 	border : solid 2px black;
-	margin-left: 30px;
+	float: right;
+	margin-right: 10%;
 }
 
 .note{
 	height : 50px;
 	background-color: blue;
-	float : left;
 	top : 400px;
+	float : left;
 }
 
 .note_none{
 	height : 50px;
 	background-color: black;
-	float : left;
 	top : 400px;
+	float : left;
 }
 
 #btn{
@@ -57,9 +55,22 @@
 .key{
 	height : 50px;
 	background-color: pink;
-	float : left;
 	top : 400px;
+	float : left;
 	text-align: center;
 	line-height: 50px;
 	font-size :20px;
+}
+
+#playButton{
+	height: 100px;
+	width: 300px;
+	margin-top: 20px;
+	font-size: 90px;
+}
+
+.levelButton{
+	height: 30px;
+	width: 120px;
+	font-size: 20px;
 }
