@@ -50,6 +50,7 @@ function startGame(_numOfKey){
 		game_end_div.innerHTML = "떨어지는 노트에 맞춰 키보드를 누르세요!";
 }
 
+
 //end game
 function endGame(){
 	window.clearInterval(intervalID);
