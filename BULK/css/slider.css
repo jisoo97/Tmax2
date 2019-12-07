@@ -1,0 +1,70 @@
+body{
+	background-image: url(https://gif.fmkorea.com/files/attach/new/20170830/486616/8770543/759944382/95ee361012763f2b482ed390c29b882a.gif); 
+	background-size: cover;
+}
+
+div.wrap {
+	margin-top: 10%: ;
+}
+
+div.imgSlide img {
+
+}
+
+div.imgSlide {
+	width:500px;
+	height:500px;
+	margin:0 auto;
+}
+/*
+#p1{
+
+}
+
+#p2{
+	
+}
+#p3{
+	
+}
+#p4{
+	
+}
+#p5{
+	
+}
+#p6{
+	
+}
+#p7{
+	
+}
+#p8{
+	
+}
+#p9{
+	
+}
+#p10{
+	
+}
+#p11{
+	
+}
+#p12{
+	
+}
+#p13{
+	
+}
+#p14{
+	
+}
+#p15{
+	
+}
+*/
+#pl{
+	width: 100px;
+	border-radius: 50px;
+}
