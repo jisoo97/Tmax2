@@ -10,13 +10,23 @@
 		$(function() {
 			$('.imgSlide img').slidingGallery({ useCaptions: true, container: $('.imgSlide') });
 		});
+		var activeImg = undefined;
+        function getActive(){
+            var imgList=document.getElementsByClassName("imgSlide")[0].getElementsByTagName("img"); 
+            for(var i=0; i<imgList.length; i++){
+                if(imgList[i].style.left == "50px")
+                activeImg = imgList[i];
+            }
+            console.log(activeImg)
+            return activeImg;
+        }   
 	</script>
 </head>
 <body>
 
 	<div class="wrap">
 		<div class="imgSlide">
-			<img id="p1" src="images/1.jpg" alt="노래1"/>
+			<img id="p1" src="images/1.jpg" alt="노래1" onclick="getActive()"/>
 			<img id="p2"src="images/2.jpg" alt="노래2"class="start"/>
 			<img id="p3" src="images/3.jpg" alt="노래3"/>
 			<img id="p4" src="images/4.jfif" alt="노래4"/>
