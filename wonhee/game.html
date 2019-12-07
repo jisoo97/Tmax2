@@ -14,6 +14,8 @@
 		var songName = "akmu";
 		window.onload = function(){
 			playButton.addEventListener('click', function() {
+				var addr = location.href.split("?");
+				songName = addr[1].split(":")[1];
 				startGame(difficulty, songName);
 		  });
 
