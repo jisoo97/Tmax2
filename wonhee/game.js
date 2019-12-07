@@ -221,7 +221,7 @@ function changeKeyColor(keyCode){
 function changeKeyColorBack(keyCode){
 	var pressedKey = getPressedKey(keyCode);
 	var key_div = document.getElementById(pressedKey);
-	key_div.style.backgroundColor = "pink";
+	key_div.style.backgroundColor = "black";
 }
 
 //Check note position and pressed key
