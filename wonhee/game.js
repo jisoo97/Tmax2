@@ -68,7 +68,7 @@ function updateScore(){
 
 //play music
 function playMusic(){
-	audio.src = "../BULK/songs/" + songName + "".mp3";
+	audio.src = "../BULK/songs/" + songName + ".mp3";
 	audio.muted = false;
 	audio.play();
 }
