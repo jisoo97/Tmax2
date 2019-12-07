@@ -1,10 +1,10 @@
 #bk{
-	 position: fixed; 
-      top: 0; 
-      left: 0; 
+	 position: fixed;
+      top: 0;
+      left: 0;
       min-width: 100%;
       min-height: 100%;
-        background-image:url("bk1.gif"); 
+        background-image:url("bk1.gif");
         background-size: cover;
 }
 
@@ -44,6 +44,7 @@
 	background-color: blue;
 	top : 400px;
 	float : left;
+	z-index : 3;
 }
 
 .note_none{
@@ -51,6 +52,7 @@
 	background-color: black;
 	top : 400px;
 	float : left;
+	z-index : 3;
 }
 
 #btn{
@@ -73,6 +75,7 @@
 	text-align: center;
 	line-height: 50px;
 	font-size :20px;
+	z-index : 5;
 }
 
 #playButton{
