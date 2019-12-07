@@ -5,43 +5,38 @@
 	<title>Select Game</title>
 	<link href="css/slider.css" type="text/css" rel="stylesheet" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.slider.min.js"></script>
+	<script type="text/javascript" src="js/jquery.slider.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('.imgSlide img').slidingGallery({ useCaptions: true, container: $('.imgSlide') });
 		});
 
-		var activeImg = undefined;
-    function getActive(){
-        var imgList=document.getElementsByClassName("imgSlide")[0].getElementsByTagName("img");
-        for(var i=0; i<imgList.length; i++){
-					if(imgList[i].style.left == "50px")
-                activeImg = imgList[i];
-        }
-        console.log(activeImg)
-        return activeImg;
-    }
+		function getSongName(){
+			var songLists = ['red_velvet', 'all_I_want_for_christmas','blueming','bts','flower_shower','hann','haon',
+	         'mc_mong','akmu','bbibbi','bol4','taeyeon','seventeen','zico','wanna_one'];
+			return songLists[centerImg[0].id];
+		}
 	</script>
 </head>
 <body>
 
 	<div class="wrap">
 		<div class="imgSlide">
-			<img id="p1" src="images/1.jpg" alt="노래1" onclick="getActive()"/>
-			<img id="p2"src="images/2.jpg" alt="노래2"class="start" onclick="getActive()"/>
-			<img id="p3" src="images/3.jpg" alt="노래3" onclick="getActive()"/>
-			<img id="p4" src="images/4.jfif" alt="노래4" onclick="getActive()"/>
-			<img id="p5" src="images/5.jpg" alt="노래5" onclick="getActive()"/>
-			<img id="p6" src="images/6.jpg" alt="노래6" onclick="getActive()"/>
-			<img id="p7" src="images/7.jpg" alt="노래7" onclick="getActive()"/>
-			<img id="p8" src="images/8.jpg" alt="노래8" onclick="getActive()"/>
-			<img id="p9" src="images/9.jpg" alt="노래9" onclick="getActive()"/>
-			<img id="p10" src="images/10.jpg" alt="노래10" onclick="getActive()"/>
-			<img id="p11" src="images/11.jfif" alt="노래11" onclick="getActive()"/>
-			<img id="p12" src="images/12.jpg" alt="노래12" onclick="getActive()"/>
-			<img id="p13" src="images/13.jpg" alt="노래13" onclick="getActive()"/>
-			<img id="p14" src="images/14.jfif" alt="노래14" onclick="getActive()"/>
-			<img id="p15" src="images/15.jfif" alt="노래15" onclick="getActive()"/>
+			<img id="0" src="images/1.jpg" alt="노래1" onclick="getSongName()"/>
+			<img id="1"src="images/2.jpg" alt="노래2"class="start" onclick="getSongName()"/>
+			<img id="2" src="images/3.jpg" alt="노래3" onclick="getSongName()"/>
+			<img id="3" src="images/4.jfif" alt="노래4" onclick="getSongName()"/>
+			<img id="4" src="images/5.jpg" alt="노래5" onclick="getSongName()"/>
+			<img id="5" src="images/6.jpg" alt="노래6" onclick="getSongName()"/>
+			<img id="6" src="images/7.jpg" alt="노래7" onclick="getSongName()"/>
+			<img id="7" src="images/8.jpg" alt="노래8" onclick="getActive()"/>
+			<img id="8" src="images/9.jpg" alt="노래9" onclick="getActive()"/>
+			<img id="9" src="images/10.jpg" alt="노래10" onclick="getActive()"/>
+			<img id="10" src="images/11.jfif" alt="노래11" onclick="getActive()"/>
+			<img id="11" src="images/12.jpg" alt="노래12" onclick="getActive()"/>
+			<img id="12" src="images/13.jpg" alt="노래13" onclick="getActive()"/>
+			<img id="13" src="images/14.jfif" alt="노래14" onclick="getActive()"/>
+			<img id="14" src="images/15.jfif" alt="노래15" onclick="getActive()"/>
 		</div>
 	</div>
 
@@ -52,14 +47,19 @@
 		</center>
 
 		<script type="text/javascript">
-	        $(".hov-anim").mouseover(function() {
+	     $(".hov-anim").mouseover(function() {
 	  		$(this).attr("src", $(this).data("animated"))
 			}),
 			$(".hov-anim").mouseout(function() {
 	  		$(this).attr("src", $(this).data("static"))
 			});
+
+			$(".hov-anim").click(function(){
+				var songName = getSongName();
+				window.open("../wonhee/game.html?songName:"+songName);
+			});
     	</script>
-	</div>
+		</div>
 
 </body>
 </html>

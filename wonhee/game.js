@@ -1,6 +1,6 @@
 const NOTE_MARGIN = 2;
 
-var pattern; 
+var pattern;
 var firstNote = [];
 var score = 0;
 var time = 0;
@@ -68,6 +68,7 @@ function updateScore(){
 
 //play music
 function playMusic(){
+	audio.src = "../BULK/songs/" + songName + "".mp3";
 	audio.muted = false;
 	audio.play();
 }
