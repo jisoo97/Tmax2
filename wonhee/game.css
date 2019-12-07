@@ -1,5 +1,6 @@
 #bk{
-	 position: fixed; 
+	background-color:rgba(0, 0, 0, 0.9);
+	 position: absolute; 
       top: 0; 
       left: 0; 
       min-width: 100%;
@@ -12,8 +13,12 @@
 
 
 #score_div{
-	border : solid 2px red;
 	height: 10%;
+	background: #000;
+	opacity: 0.6;
+	color: #fff;
+	font-size: 30px;
+	font-weight: bold;
 }
 #note_div{
 	border : solid 2px red;
@@ -22,7 +27,6 @@
 	float : center;
 }
 #key_div{
-	border : solid 2px red;
 	height: 20%;
 }
 
@@ -41,7 +45,7 @@
 
 .note{
 	height : 50px;
-	background-color: blue;
+	background-color: red;
 	top : 400px;
 	float : left;
 }
@@ -67,12 +71,15 @@
 
 .key{
 	height : 50px;
-	background-color: pink;
+	background-color:black;
+	opacity: 0.8;
 	top : 400px;
 	float : left;
 	text-align: center;
 	line-height: 50px;
 	font-size :20px;
+	color: #fff;
+	font-weight: bold;
 }
 
 #playButton{
@@ -86,4 +93,19 @@
 	height: 30px;
 	width: 120px;
 	font-size: 20px;
+}
+
+#lowButton{
+	background-color: yellow;
+	border:#000;
+}
+
+#middleButton{
+	background-color: orange;
+	border:#000;
+}
+
+#highButton{
+	background-color: red;
+	border:#000;
 }
