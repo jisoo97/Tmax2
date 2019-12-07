@@ -3,12 +3,18 @@
 <head>
 	<title>document</title>
 	<link rel="stylesheet" href="game.css">
+	<script src="../pattern/low.js"></script>
+	<script src="../pattern/middle.js"></script>
+	<script src="../pattern/high.js"></script>
 	<script src="game.js"></script>
 	<script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
+
 	<script type="text/javascript">
+		var difficulty = "low";
+		var songName = "akmu";
 		window.onload = function(){
 			playButton.addEventListener('click', function() {
-				startGame(4);
+				startGame(difficulty, songName);
 		  });
 
 			$(document).keydown(function(event) {
@@ -19,15 +25,27 @@
 			$(document).keyup(function(event) {
 				changeKeyColorBack(event.keyCode);
 			});
+
+			lowButton.addEventListener('click', function(){
+				difficulty = "low";
+				console.log(difficulty)
+			});
+
+			middleButton.addEventListener('click',function(){
+				difficulty = "middle";
+				console.log(difficulty)
+			});
+
+			highButton.addEventListener('click',function(){
+				difficulty = "high";
+				console.log(difficulty)
+			});
 		}
 	</script>
 </head>
-<body>
+<body id="bk">
 
 <div id = 'game_end_div'>PLAY 버튼을 누르세요!</div>
-
-	
-
 	<center>
 		<div id="all_div">
 			<div id ="score_div">
@@ -39,22 +57,20 @@
 			</div>
 		</div>
 	</center>
-	
+
 		<div style="padding-top: 30px;">
 		</div>
 
 		<center>
-			<button class="levelButton">EASY</button>
-			<button class="levelButton">NORMAL</button>
-			<button class="levelButton">HARD</button>
+			<button class="levelButton" id ="lowButton">EASY</button>
+			<button class="levelButton" id ="middleButton">NORMAL</button>
+			<button class="levelButton" id ="highButton">HARD</button>
 		</center>
 
-		
+
 		<center>
 		   <button id="playButton">PLAY</button>
 		</center>
-
-		<!---button id='btn'>button</button-->
 		<audio id="audio" muted autoplay>
   		<source src="./Hope.mp3" type="audio/mp3">
   			Your browser does not support the audio element.

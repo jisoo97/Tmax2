@@ -1,6 +1,6 @@
 const NOTE_MARGIN = 2;
 
-var pattern = [[2.5,1,1,1,0],
+var pattern; /*[[2.5,1,1,1,0],
 [5,1,1,0,0],
 [7.25,0,0,0,1],
 [9.75,1,0,0,1],
@@ -34,7 +34,7 @@ var pattern = [[2.5,1,1,1,0],
 [76,0,0,1,0],
 [78.25,1,1,0,1],
 [80.75,1,0,0,0],
-[83.25,1,0,0,0]*/];
+[83.25,1,0,0,0]];*/
 var firstNote = [];
 var score = 0;
 var time = 0;
@@ -42,14 +42,26 @@ var i=0;
 var intervalID;
 var numOfKey;
 //===========================    Game 관련 ================================
-function startGame(_numOfKey){
-		numOfKey = _numOfKey;
+function startGame(difficulty, songName){
+		numOfKey = getNumOfKey(difficulty);
+		pattern = eval(difficulty + "_" + songName);
+		console.log(pattern);
 		intervalID = window.setInterval(gameManager, 250);
 		makeKeyPad();
 		playMusic();
 		game_end_div.innerHTML = "떨어지는 노트에 맞춰 키보드를 누르세요!";
 }
 
+function getNumOfKey(difficulty){
+	switch(difficulty){
+		case "low":
+			return 4;
+		case "middle":
+			return 6;
+		case "high":
+			return 8;
+		}
+}
 
 //end game
 function endGame(){
