@@ -7,15 +7,26 @@ var time = 0;
 var i=0;
 var intervalID;
 var numOfKey;
-//===========================    Game 관련 ================================
+
+var is_gaming = false;
+//===========================    Game  ================================
 function startGame(difficulty, songName){
-		numOfKey = getNumOfKey(difficulty);
-		pattern = eval(difficulty + "_" + songName);
-		console.log(pattern);
-		intervalID = window.setInterval(gameManager, 250);
-		makeKeyPad();
-		playMusic();
-		game_end_div.innerHTML = "떨어지는 노트에 맞춰 키보드를 누르세요!";
+	if(pattern != null) {
+		return;
+	}
+
+	numOfKey = getNumOfKey(difficulty);
+	pattern = eval(difficulty + "_" + songName);
+	//console.log(pattern);
+	intervalID = window.setInterval(gameManager, 250);
+	makeKeyPad();
+	playMusic();
+	i=0;
+	score = 0;
+	time= 0;
+	updateScore();
+	game_span1.innerHTML = "떨어지는 노트에 맞춰";
+	game_span2.innerHTML = "Key를 누르세요!";
 }
 
 function getNumOfKey(difficulty){
@@ -35,7 +46,9 @@ function endGame(){
 	setTimeout(function() {
 			audio.pause();
 	}, 1000);
-	game_end_div.innerHTML = "GAME OVER </br> 최종점수는 : " +score+ " 점 입니다!";
+	game_span1.innerHTML = "GAME OVER </br> 최종점수는 : " +score+ " 입니다!";
+	game_span2.innerHTML = "F5를 눌러 다시 게임을 시작하세요!";
+	pattern = null;
 }
 
 //주기적으로 불리는 함수
@@ -43,10 +56,14 @@ function gameManager(){
 	if(i >= pattern.length)
 		endGame();
 
+	if(pattern == null || pattern[i] == null) {
+		return;
+	}
+
 	if(pattern[i][0] == time){
 		makeNote(pattern[i]);
 		moveNote(firstNote);
-		sleep(1050);
+		sleep(1950);
 		i++;
 	}
 	time = time+0.25;
@@ -73,7 +90,18 @@ function playMusic(){
 	audio.play();
 }
 
-//===========================    Note 관련 ================================
+//print score
+function printScore(score){
+	var game_score_div = document.getElementById("game_score_div");
+	game_score_div.innerHTML = score;
+
+	setTimeout(function() {
+		var game_score_div = document.getElementById("game_score_div");
+		game_score_div.innerHTML = "";
+	}, 700);
+}
+
+//===========================    Note ================================
 //parameter : nope
 //return : nope
 function makeNote(noteLine){
@@ -93,7 +121,7 @@ function makeNote(noteLine){
 	}
 }
 
-//noteLine : note 한 줄의 배열
+//noteLine : note 1 line
 //return : nope
 function moveNote(noteLine){
 	  //console.log("move note");
@@ -105,7 +133,7 @@ function moveNote(noteLine){
 					{ transform: 'translateY(380px)' }
 				], {
 					// timing options
-					duration: 1100,
+					duration: 2000,
 					iterations: 1
 				});
 		}
@@ -115,8 +143,12 @@ function moveNote(noteLine){
 function deleteNote(index){
 	//delete the first headed notes
 	if(!index){//index == null
-		for(var i=0; i<numOfKey; i++)
-			firstNote.shift().remove();
+		for(var i=0; i<numOfKey; i++) {
+			var headNode = firstNote.shift();
+			if(headNode != null) {
+				headNode.remove();
+			}
+		}
 	}
 	else {//make certain notes invisible
 			firstNote[index].style.backgroundColor = "transparent";
@@ -124,12 +156,12 @@ function deleteNote(index){
 }
 
 //parameter : nope
-//return : note 1개의 넓이
+//return : note 1
 function computeCustomizedWidth(){
 	var note_div = document.querySelector('#note_div');
 	var largeWidth = note_div.offsetWidth;
 	var margin = NOTE_MARGIN;
-	//border가 2px 라서 숫자만 가져옴
+	//border = 2px
 	var border = window.getComputedStyle(note_div).borderWidth[0];
 	return (largeWidth - (2*border))/numOfKey -(2*margin) -1;
 }
@@ -137,27 +169,41 @@ function computeCustomizedWidth(){
 //noteItem : element of one note
 //return : score (score by poisition)
 function getScoreByPosition(noteItem){
-	var topPosition = $(noteItem).offset().top;
+	if(pattern == null) {
+		return '';
+	}
+
+	var offset = $(noteItem).offset();
+	if(offset == null) {
+		return 'bad';
+	}
+	var topPosition = offset.top;
 	if (noteItem.className != "note")
 		return 'bad';
 	var score = "";
-	if (topPosition<359 || topPosition>411) // 359> topPos  or 411 <topPos
+	if (topPosition<350 || topPosition>500) // 359> topPos  or 411 <topPos
 		score = 'bad';
-	else if(topPosition<390 && topPosition>380) // 380 < topPos < 390
+	else if(topPosition<450 && topPosition>400) // 380 < topPos < 390
 		score = 'perfect';
 	else//normal
 		score = 'normal'
 	return score;
 }
 
-//===========================   Key 관련 =================================
+//===========================   Key 愿��� =================================
 var key4 = ['D','F','J','K'];
 var key6 = ['S','D','F','J','K','L'];
 var key8 = ['A','S','D','F','J','K','L',';'];
 
 //parameter : nope
 //return : nope
+var padCreated = false;
 function makeKeyPad(){
+	if(padCreated == true) {
+		return;
+	}
+
+	padCreated = true;
 	var key_div = document.getElementById("key_div");
 	var customizedWidth = computeCustomizedWidth(numOfKey);
 	for(var i=0; i<numOfKey; i++)
@@ -174,8 +220,8 @@ function makeKeyPad(){
 	}
 }
 
-//keyCode : 문자의 코드(숫자)
-//letter : 눌린 문자
+//keyCode : code number of key pressed
+//letter : the literal letter of key
 function getPressedKey(keyCode){
 	var letter;
 	switch(keyCode){
@@ -214,6 +260,9 @@ function getPressedKey(keyCode){
 function changeKeyColor(keyCode){
 	var pressedKey = getPressedKey(keyCode);
 	var key_div = document.getElementById(pressedKey);
+	if(key_div == null) {
+		return;
+	}
 	key_div.style.backgroundColor = "red";
 }
 
@@ -221,21 +270,34 @@ function changeKeyColor(keyCode){
 function changeKeyColorBack(keyCode){
 	var pressedKey = getPressedKey(keyCode);
 	var key_div = document.getElementById(pressedKey);
+	if(key_div == null) {
+		return;
+	}
 	key_div.style.backgroundColor = "black";
 }
 
 //Check note position and pressed key
 function checkKeyWithNote(keyCode){
+	if(pattern == null) {
+		return;
+	}
+
 	var pressedKey = getPressedKey(keyCode);
 	var keyArr = eval("key" + numOfKey);
 	var index = keyArr.indexOf(pressedKey);
 	var _score  = getScoreByPosition(firstNote[index]);
-	if(_score == 'bad')
+	if(_score == 'bad'){
+		printScore('Miss');
 		return;
-	else if(_score == 'normal')//normal
+	}
+	else if(_score == 'normal'){//normal
+		printScore("Good!");
 		score+=50;
-	else if(_score == 'perfect')//perfect
+	}
+	else if(_score == 'perfect'){//perfect
+		printScore("Perfect!!");
 		score+=100;
+	}
 	deleteNote(index); //normal or pefect deletes note
 	updateScore();
 }

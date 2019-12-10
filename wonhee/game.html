@@ -16,6 +16,7 @@
 			playButton.addEventListener('click', function() {
 				var addr = location.href.split("?");
 				songName = addr[1].split(":")[1];
+				game_score_div.innerHTML = "PLAY!";
 				startGame(difficulty, songName);
 		  });
 
@@ -30,24 +31,28 @@
 
 			lowButton.addEventListener('click', function(){
 				difficulty = "low";
-				console.log(difficulty)
+				game_score_div.innerHTML = "EASY";
 			});
 
 			middleButton.addEventListener('click',function(){
 				difficulty = "middle";
-				console.log(difficulty)
+				game_score_div.innerHTML = "NORMAL";
 			});
 
 			highButton.addEventListener('click',function(){
 				difficulty = "high";
-				console.log(difficulty)
+				game_score_div.innerHTML = "HARD";
 			});
 		}
 	</script>
 </head>
 <body id="bk">
 
-<div id = 'game_end_div'>난이도를 고르고, PLAY 버튼을 누르세요!</div>
+<div id = 'game_end_div'>
+	<span id='game_span1'>난이도를 고르고,</span><br>
+	<span id='game_span2'>PLAY 버튼을 누르세요!</span>
+	<div id = 'game_score_div'></div>
+</div>
 	<center>
 		<div id="all_div">
 			<div id ="score_div">
@@ -55,6 +60,8 @@
 			</div>
 			<div id ="note_div">
 			</div>
+			<div class="strike" style="top:400px; background : #C5E99B;"></div>
+			<div class="strike" style="top:450px; background : #548687;"></div>
 			<div id ="key_div">
 			</div>
 		</div>
